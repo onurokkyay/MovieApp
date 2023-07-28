@@ -1,22 +1,24 @@
 import React from 'react';
+import { Card } from 'react-bootstrap';
 
 const MovieCard = ({ movie }) => {
+
   return (
     <div className="col">
-      <div className="card">
-        <img src={movie.posterPath} className="card-img-top" alt={movie.title} />
-        <div className="card-body">
-          <h5 className="card-title">{movie.title}</h5>
-          <p className="card-text">Release Date: {movie.releaseDate}</p>
-          <p className="card-text">Adult: {movie.adult ? "Yes" : "No"}</p>
-          <p className="card-text">Original Language: {movie.originalLanguage}</p>
-          <p className="card-text">Original Title: {movie.originalTitle}</p>
-          <p className="card-text">Overview: {movie.overview}</p>
-          <p className="card-text">Popularity: {movie.popularity}</p>
-          <p className="card-text">Vote Average: {movie.voteAverage}</p>
-          <p className="card-text">Vote Count: {movie.voteCount}</p>
-        </div>
-      </div>
+      <Card>
+        <Card.Img variant="top" src={movie.posterPath} alt={movie.title} />
+        <Card.Body>
+          <Card.Title>{movie.title}</Card.Title>
+          <Card.Text>Release Date: {movie.releaseDate}</Card.Text>
+          <Card.Text>Adult: {movie.adult ? "Yes" : "No"}</Card.Text>
+          <Card.Text>Original Language: {movie.originalLanguage}</Card.Text>
+          <Card.Text>Original Title: {movie.originalTitle}</Card.Text>
+          <Card.Text>Overview: {movie.overview}</Card.Text>
+          <Card.Text>Popularity: {movie.popularity}</Card.Text>
+          <Card.Text>Vote Average: {movie.voteAverage}</Card.Text>
+          <Card.Text>Vote Count: {movie.voteCount}</Card.Text>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
