@@ -34,7 +34,7 @@ const MovieList = () => {
       </div>
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {movies.map((movie) => (
-           movie.posterPath && movie.posterPath.startsWith('https://') &&
+           movie.posterPath &&
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
