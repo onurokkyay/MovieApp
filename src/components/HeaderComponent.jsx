@@ -30,6 +30,13 @@ function HeaderComponent() {
                     </Link>
                   )}
                 </li>
+                <li className="nav-item fs-5">
+                  { (
+                    <Link className="nav-link" to="/movies/genres">
+                      Genres
+                    </Link>
+                  )}
+                </li>
               </ul>
             </div>
             <ul className="navbar-nav">
