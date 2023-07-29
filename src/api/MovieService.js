@@ -49,6 +49,7 @@ export async function getPopularMovies(page = 1) {
 export async function getGenres() {
   try {
     const response = await apiClient.get(`/movieservice/movies/genres`);
+    console.error("Genres:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching genres:", error.message);
@@ -57,11 +58,12 @@ export async function getGenres() {
 }
 
 // Example of calling "Discover Movies" API
-export async function discoverMovies(withGenres) {
+export async function discoverMovies(withGenres,page) {
   try {
     const response = await apiClient.get(`/movieservice/movies/discover`, {
       params: {
         withGenres,
+        page,
       },
     });
     return response.data;

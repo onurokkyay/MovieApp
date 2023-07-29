@@ -11,7 +11,6 @@ const GenreMovies = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log("UseEffect GenreMovies:" + currentPage);
     retrieveMoviesByGenre();
     addScrollListener();
     return () => {
@@ -27,7 +26,6 @@ const GenreMovies = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 
     if (scrollTop + clientHeight >= scrollHeight - 20) {
-      console.log("currentPage:" + currentPage);
       setCurrentPage((prevPage) => prevPage + 1);
     }
   };
@@ -36,9 +34,8 @@ const GenreMovies = () => {
 
   const retrieveMoviesByGenre = async () => {
     try {
-      console.log("GenreName:");
       setLoading(true);
-      const response = await discoverMovies(genreName);
+      const response = await discoverMovies(genreName,currentPage);
       setMovies(response.results);
       setLoading(false);
     } catch (error) {
