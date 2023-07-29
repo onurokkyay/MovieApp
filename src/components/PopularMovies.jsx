@@ -44,7 +44,7 @@ const MovieList = () => {
 
   return (
     <div>
-      <h1>Movie List</h1>
+      <h1>Popular Movies</h1>
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {popularMovies.map(
           (movie) =>
