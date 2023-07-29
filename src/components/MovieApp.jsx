@@ -5,6 +5,7 @@ import SearchMovie from "./SearchMovie";
 import HomeComponent from "./HomeComponent";
 import HeaderComponent from "./HeaderComponent";
 import Genres from "./Genres";
+import GenreMovies from "./GenreMovies";
 
 function MovieApp() {
   return (
@@ -16,6 +17,7 @@ function MovieApp() {
           <Route path="/movies/popular" element={<PopularMovies />} />
           <Route path="/movies/search" element={<SearchMovie />} />
           <Route path="/movies/genres" element={<Genres />} />
+          <Route path="/movies/genres/:genreName" element={<GenreMovies />} />
         </Routes>
     </BrowserRouter>
     </div>
