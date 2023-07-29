@@ -5,7 +5,7 @@ import debounce from "lodash.debounce";
 import MovieCard from "./MovieCard";
 
 const GenreMovies = () => {
-  const { genreName } = useParams();
+  const { genreName, genreId } = useParams();
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -35,8 +35,8 @@ const GenreMovies = () => {
   const retrieveMoviesByGenre = async () => {
     try {
       setLoading(true);
-      const response = await discoverMovies(genreName,currentPage);
-      setMovies(response.results);
+      const response = await discoverMovies(genreId, currentPage);
+      setMovies((prevMovies) => [...prevMovies, ...response.results]);
       setLoading(false);
     } catch (error) {
       setLoading(false);

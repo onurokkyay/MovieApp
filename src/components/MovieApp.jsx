@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter , Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PopularMovies from "./PopularMovies";
 import SearchMovie from "./SearchMovie";
 import HomeComponent from "./HomeComponent";
@@ -10,16 +10,19 @@ import GenreMovies from "./GenreMovies";
 function MovieApp() {
   return (
     <div className="MovieApp">
-    <BrowserRouter>
-    <HeaderComponent />
+      <BrowserRouter>
+        <HeaderComponent />
         <Routes>
           <Route path="/" exact element={<HomeComponent />} />
           <Route path="/movies/popular" element={<PopularMovies />} />
           <Route path="/movies/search" element={<SearchMovie />} />
           <Route path="/movies/genres" element={<Genres />} />
-          <Route path="/movies/genres/:genreName" element={<GenreMovies />} />
+          <Route
+            path="/movies/genres/:genreName/:genreId"
+            element={<GenreMovies />}
+          />
         </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </div>
   );
 }

@@ -27,7 +27,7 @@ const Genres = () => {
       <div className="row row-cols-1 row-cols-md-3 g-5">
         {genres.map((genre) => (
           <div key={genre.id}>
-            <Link to={`/movies/genres/${genre.name}`}>
+            <Link to={`/movies/genres/${genre.name}/${genre.id}`}>
               <Button>{genre.name}</Button>
             </Link>
           </div>
