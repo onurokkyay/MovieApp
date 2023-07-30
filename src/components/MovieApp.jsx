@@ -18,7 +18,7 @@ function MovieApp() {
           <Route path="/movies/search" element={<SearchMovie />} />
           <Route path="/movies/genres" element={<Genres />} />
           <Route
-            path="/movies/genres/:genreName/:genreId"
+            path="/movies/genres/:genreName"
             element={<GenreMovies />}
           />
         </Routes>

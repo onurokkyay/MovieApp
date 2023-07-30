@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { discoverMovies } from "../api/MovieService";
 import debounce from "lodash.debounce";
 import MovieCard from "./MovieCard";
 
 const GenreMovies = () => {
-  const { genreName, genreId } = useParams();
+  const { genreName } = useParams();
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const { id, name } = location.state;
 
   useEffect(() => {
     retrieveMoviesByGenre();
@@ -35,7 +37,7 @@ const GenreMovies = () => {
   const retrieveMoviesByGenre = async () => {
     try {
       setLoading(true);
-      const response = await discoverMovies(genreId, currentPage);
+      const response = await discoverMovies(id, currentPage);
       setMovies((prevMovies) => [...prevMovies, ...response.results]);
       setLoading(false);
     } catch (error) {
