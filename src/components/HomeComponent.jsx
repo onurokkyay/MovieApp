@@ -24,6 +24,16 @@ function HomeComponent() {
           </Button>
         </Card.Body>
       </Card>
+
+      <Card style={{ width: '18rem', margin: '20px' }}>
+        <Card.Body>
+          <Card.Title>Genres</Card.Title>
+          <Card.Text>Discover movies by genres.</Card.Text>
+          <Button as={Link} to="/movies/genres" variant="primary">
+            Go to Search Movies
+          </Button>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
