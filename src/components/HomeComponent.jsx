@@ -30,7 +30,7 @@ function HomeComponent() {
           <Card.Title>Genres</Card.Title>
           <Card.Text>Discover movies by genres.</Card.Text>
           <Button as={Link} to="/movies/genres" variant="primary">
-            Go to Search Movies
+            Go to Genres
           </Button>
         </Card.Body>
       </Card>
