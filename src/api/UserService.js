@@ -1,18 +1,22 @@
 import { apiClient } from "./ApiClient";
 
+const BASE_URL = "/movieservice/users";
+
 const UserService = {
   getUserByUserName: async (userName) => {
     try {
-      const response = await apiClient.get(`/users/${userName}`);
+      const response = await apiClient.get(`${BASE_URL}/${userName}`);
+      console.log(response);
       return response.data;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
 
   createUser: async (userData) => {
     try {
-      const response = await apiClient.post("/users", userData);
+      const response = await apiClient.post(`${BASE_URL}`, userData);
       return response.data;
     } catch (error) {
       throw error;
@@ -22,7 +26,7 @@ const UserService = {
   addWatchedMovie: async (userName, movieData) => {
     try {
       const response = await apiClient.post(
-        `/users/${userName}/watchedMovies`,
+        `${BASE_URL}/${userName}/watchedMovies`,
         movieData
       );
       return response.data;
@@ -34,7 +38,7 @@ const UserService = {
   addFavMovie: async (userName, movieData) => {
     try {
       const response = await apiClient.post(
-        `/users/${userName}/favMovies`,
+        `${BASE_URL}/${userName}/favMovies`,
         movieData
       );
       return response.data;
@@ -45,7 +49,9 @@ const UserService = {
 
   removeWatchedMovie: async (userName, movieName) => {
     try {
-      await apiClient.delete(`/users/${userName}/watchedMovies/${movieName}`);
+      await apiClient.delete(
+        `${BASE_URL}/${userName}/watchedMovies/${movieName}`
+      );
     } catch (error) {
       throw error;
     }
@@ -53,7 +59,7 @@ const UserService = {
 
   removeFavMovie: async (userName, movieName) => {
     try {
-      await apiClient.delete(`/users/${userName}/favMovies/${movieName}`);
+      await apiClient.delete(`${BASE_URL}/${userName}/favMovies/${movieName}`);
     } catch (error) {
       throw error;
     }
