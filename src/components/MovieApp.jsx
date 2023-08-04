@@ -7,6 +7,7 @@ import HeaderComponent from "./HeaderComponent";
 import Genres from "./Genres";
 import GenreMovies from "./GenreMovies";
 import MovieDetailCard from "./MovieDetailCard";
+import User from "./User";
 
 function MovieApp() {
   return (
@@ -23,6 +24,7 @@ function MovieApp() {
             path="/movies/genres/:genreName"
             element={<GenreMovies />}
           />
+          <Route path="/users/:userName" element={<User />} />
         </Routes>
       </BrowserRouter>
     </div>
