@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { getMovieById } from "../api/MovieService";
+import userService from "../api/UserService";
 
 const MovieDetailCard = () => {
   const { id } = useParams();
   const [movie, setMovies] = useState();
+  const userName = "onurokkyay"
 
   useEffect(() => {
     console.error(" useEffect:" + id);
@@ -22,6 +24,19 @@ const MovieDetailCard = () => {
     } catch (error) {
       console.error("Error retrievePopularMovies:", error.message);
     }
+  };
+
+  const handleAddToFav = async () => {
+    try {
+      const response = await userService.addFavMovie(userName,id);
+      console.log(response);
+    } catch (error) {
+      console.error("Error searching movies:", error.message);
+    }
+  };
+
+  const handleAddToWatched = () => {
+
   };
 
   return (
@@ -65,6 +80,20 @@ const MovieDetailCard = () => {
             <Button variant="primary" href={movie.homepage} target="_blank">
               Visit Homepage
             </Button>
+
+            <div style={{ marginTop: "10px" }}>
+              <Button variant="success" onClick={handleAddToFav}>
+                Add To Fav Movie List
+              </Button>
+
+              <Button
+                variant="info"
+                style={{ marginTop: "10px" }}
+                onClick={handleAddToWatched}
+              >
+                Add To Watched Movie List
+              </Button>
+            </div>
           </Card.Body>
           {movie.backdropPath && (
             <Card.Footer>
