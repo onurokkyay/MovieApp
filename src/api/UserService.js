@@ -28,9 +28,7 @@ const UserService = {
       const response = await apiClient.put(
         `${BASE_URL}/${userName}/movies/watched`,
         {
-          params: {
-            id,
-          },
+          id: id,
         }
       );
       return response.data;
@@ -43,11 +41,8 @@ const UserService = {
     try {
       const response = await apiClient.put(
         `${BASE_URL}/${userName}/movies/favorites`,
-        null,
         {
-          params: {
-            id,
-          },
+          id: id,
         }
       );
       return response.data;
