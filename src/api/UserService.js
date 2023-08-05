@@ -23,11 +23,13 @@ const UserService = {
     }
   },
 
-  addWatchedMovie: async (userName, movieData) => {
+  addWatchedMovie: async (userName, id) => {
     try {
-      const response = await apiClient.post(
-        `${BASE_URL}/${userName}/watchedMovies`,
-        movieData
+      const response = await apiClient.put(
+        `${BASE_URL}/${userName}/movies/watched`,
+        {
+          id: id,
+        }
       );
       return response.data;
     } catch (error) {
@@ -35,11 +37,13 @@ const UserService = {
     }
   },
 
-  addFavMovie: async (userName, movieData) => {
+  addFavMovie: async (userName, id) => {
     try {
-      const response = await apiClient.post(
-        `${BASE_URL}/${userName}/favMovies`,
-        movieData
+      const response = await apiClient.put(
+        `${BASE_URL}/${userName}/movies/favorites`,
+        {
+          id: id,
+        }
       );
       return response.data;
     } catch (error) {

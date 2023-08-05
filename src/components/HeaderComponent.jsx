@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function HeaderComponent() {
-
+  const userName = "onurokkyay";
   return (
     <header className="border-bottom border-light border-5 mb-5 p-2">
       <div className="container">
@@ -17,35 +17,44 @@ function HeaderComponent() {
             <div className="collapse navbar-collapse">
               <ul className="navbar-nav">
                 <li className="nav-item fs-5">
-                  {  (
+                  {
                     <Link className="nav-link" to="/">
                       Home
                     </Link>
-                  )}
+                  }
                 </li>
                 <li className="nav-item fs-5">
-                  { (
+                  {
                     <Link className="nav-link" to="/movies/popular">
                       Popular Movies
                     </Link>
-                  )}
+                  }
                 </li>
                 <li className="nav-item fs-5">
-                  { (
+                  {
                     <Link className="nav-link" to="/movies/genres">
                       Genres
                     </Link>
-                  )}
+                  }
+                </li>
+              </ul>
+              <ul className="navbar-nav">
+                <li className="nav-item fs-5">
+                  {
+                    <Link className="nav-link" to="/movies/search">
+                      Search Movie
+                    </Link>
+                  }
                 </li>
               </ul>
             </div>
             <ul className="navbar-nav">
               <li className="nav-item fs-5">
-                { (
-                  <Link className="nav-link" to="/movies/search">
-                    Search Movie
+                {
+                  <Link className="nav-link" to={`/profile/${userName}`}>
+                    Profile
                   </Link>
-                )}
+                }
               </li>
             </ul>
           </nav>
@@ -53,7 +62,6 @@ function HeaderComponent() {
       </div>
     </header>
   );
-  
 }
 
 export default HeaderComponent;

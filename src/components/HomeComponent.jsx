@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 
 function HomeComponent() {
+  const userName = "onurokkyay"
   return (
     <div>
       <Card style={{ width: '18rem', margin: '20px' }}>
@@ -31,6 +32,16 @@ function HomeComponent() {
           <Card.Text>Discover movies by genres.</Card.Text>
           <Button as={Link} to="/movies/genres" variant="primary">
             Go to Genres
+          </Button>
+        </Card.Body>
+      </Card>
+
+      <Card style={{ width: '18rem', margin: '20px' }}>
+        <Card.Body>
+          <Card.Title>Profile</Card.Title>
+          <Card.Text>Your profile and your watched,fav movies</Card.Text>
+          <Button as={Link} to={`/profile/${userName}`} variant="primary">
+            Go to Profile
           </Button>
         </Card.Body>
       </Card>
