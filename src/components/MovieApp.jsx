@@ -24,7 +24,7 @@ function MovieApp() {
             path="/movies/genres/:genreName"
             element={<GenreMovies />}
           />
-          <Route path="/users/:userName" element={<User />} />
+          <Route path="/profile/:userName" element={<User />} />
         </Routes>
       </BrowserRouter>
     </div>
