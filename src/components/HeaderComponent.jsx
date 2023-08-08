@@ -5,6 +5,12 @@ import { useAuth } from "./security/AuthContext";
 function HeaderComponent() {
   const authContext = useAuth();
   const userName = authContext.userName;
+  const isAuthenticated = authContext.isAuthenticated;
+  
+  function logout() {
+    authContext.logout();
+  }
+
   return (
     <header className="border-bottom border-light border-5 mb-5 p-2">
       <div className="container">
@@ -57,6 +63,13 @@ function HeaderComponent() {
                     Profile
                   </Link>
                 }
+              </li>
+              <li className="nav-item fs-5">
+                {isAuthenticated && (
+                  <Link className="nav-link" to="/" onClick={logout}>
+                    Logout
+                  </Link>
+                )}
               </li>
             </ul>
           </nav>
