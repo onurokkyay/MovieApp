@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import userService from "../api/UserService";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 const User = () => {
   const [userData, setUserData] = useState(null);
   const { userName } = useParams();
+  const [refresh, setRefresh] = useState(false)
 
   useEffect(() => {
+    console.log("refresh:"+refresh)
     const fetchUserData = async () => {
       try {
         const user = await userService.getUserByUserName(userName);
@@ -20,7 +22,27 @@ const User = () => {
     };
 
     fetchUserData();
-  }, []);
+  }, [refresh]);
+
+  const handleRemoveFromWatched = async (id) => {
+    console.log("Id:"+id)
+    try {
+      const response = await userService.removeWatchedMovie(userName,id );
+      setRefresh(!refresh)
+    } catch (error) {
+      console.error("Error searching movies:", error.message);
+    }
+  };
+
+  const handleRemoveFromFav = async (id) => {
+    console.log("Id:"+id)
+    try {
+      const response = await userService.removeFavMovie(userName,id );
+      setRefresh(!refresh)
+    } catch (error) {
+      console.error("Error searching movies:", error.message);
+    }
+  };
 
   return (
     userData &&
@@ -51,6 +73,9 @@ const User = () => {
                   <Card.Body>
                     <Card.Title>{movie.title}</Card.Title>
                     <Card.Text>{movie.overview}</Card.Text>
+                    <Button variant="danger" onClick={() => handleRemoveFromWatched(movie.id)}>
+                Remove from watched list
+              </Button>
                   </Card.Body>
                 </Card>
               </Col>
@@ -73,6 +98,9 @@ const User = () => {
                   <Card.Body>
                     <Card.Title>{movie.title}</Card.Title>
                     <Card.Text>{movie.overview}</Card.Text>
+                    <Button variant="danger" onClick={() => handleRemoveFromFav(movie.id)}>
+                Remove from fav list
+              </Button>
                   </Card.Body>
                 </Card>
               </Col>

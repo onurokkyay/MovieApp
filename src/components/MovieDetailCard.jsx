@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, Toast, ToastContainer } from "react-bootstrap";
+import { Card, Button, Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { getMovieById } from "../api/MovieService";
 import userService from "../api/UserService";
@@ -8,7 +8,8 @@ const MovieDetailCard = () => {
   const { id } = useParams();
   const [movie, setMovies] = useState();
   const userName = "onurokkyay";
-  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [showConflictAlert, setShowConflictAlert] = useState(false);
 
   useEffect(() => {
     console.error(" useEffect:" + id);
@@ -31,9 +32,12 @@ const MovieDetailCard = () => {
     try {
       const response = await userService.addFavMovie(userName, id);
       console.log(response);
-      setShowSuccessToast(true);
+      setShowSuccessAlert(true);
     } catch (error) {
       console.error("Error searching movies:", error.message);
+      if (error.response && error.response.status === 409) {
+        setShowConflictAlert(true);
+      }
     }
   };
 
@@ -41,9 +45,12 @@ const MovieDetailCard = () => {
     try {
       const response = await userService.addWatchedMovie(userName, id);
       console.log(response);
-      setShowSuccessToast(true);
+      setShowSuccessAlert(true);
     } catch (error) {
       console.error("Error searching movies:", error.message);
+      if (error.response && error.response.status === 409) {
+        setShowConflictAlert(true);
+      }
     }
   };
 
@@ -112,7 +119,8 @@ const MovieDetailCard = () => {
               />
             </Card.Footer>
           )}
-          <ToastContainer
+
+          <Alert
             style={{
               position: "fixed",
               top: "50%",
@@ -120,18 +128,31 @@ const MovieDetailCard = () => {
               transform: "translate(-50%, -50%)",
               zIndex: 9999,
             }}
+            show={showSuccessAlert}
+            variant="success"
+            onClose={() => setShowSuccessAlert(false)}
+            dismissible
           >
-            <Toast
-              show={showSuccessToast}
-              onClose={() => setShowSuccessToast(false)}
-              style={{ minWidth: 200 }}
-            >
-              <Toast.Header closeButton>
-                <strong className="me-auto">Başarılı</strong>
-              </Toast.Header>
-              <Toast.Body>Movie added to list !</Toast.Body>
-            </Toast>
-          </ToastContainer>
+            <Alert.Heading>Success</Alert.Heading>
+            <p>Movie added to list !</p>
+          </Alert>
+
+          <Alert
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 9999,
+            }}
+            show={showConflictAlert}
+            variant="danger"
+            onClose={() => setShowConflictAlert(false)}
+            dismissible
+          >
+            <Alert.Heading>Conflict</Alert.Heading>
+            <p>Movie already exists in list!</p>
+          </Alert>
         </Card>
       )}
     </div>

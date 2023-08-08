@@ -51,19 +51,19 @@ const UserService = {
     }
   },
 
-  removeWatchedMovie: async (userName, movieName) => {
+  removeWatchedMovie: async (userName, id) => {
     try {
       await apiClient.delete(
-        `${BASE_URL}/${userName}/watchedMovies/${movieName}`
+        `${BASE_URL}/${userName}/movies/watched/${id}`
       );
     } catch (error) {
       throw error;
     }
   },
 
-  removeFavMovie: async (userName, movieName) => {
+  removeFavMovie: async (userName, id) => {
     try {
-      await apiClient.delete(`${BASE_URL}/${userName}/favMovies/${movieName}`);
+      await apiClient.delete(`${BASE_URL}/${userName}/movies/favorites/${id}`);
     } catch (error) {
       throw error;
     }
