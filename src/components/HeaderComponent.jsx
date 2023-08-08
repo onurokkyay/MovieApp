@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "./security/AuthContext";
 
 function HeaderComponent() {
-  const userName = "onurokkyay";
+  const authContext = useAuth();
+  const userName = authContext.userName;
   return (
     <header className="border-bottom border-light border-5 mb-5 p-2">
       <div className="container">
@@ -18,7 +20,7 @@ function HeaderComponent() {
               <ul className="navbar-nav">
                 <li className="nav-item fs-5">
                   {
-                    <Link className="nav-link" to="/">
+                    <Link className="nav-link" to="/home">
                       Home
                     </Link>
                   }

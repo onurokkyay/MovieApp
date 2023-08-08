@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import PopularMovies from "./PopularMovies";
 import SearchMovie from "./SearchMovie";
 import HomeComponent from "./HomeComponent";
@@ -8,25 +8,86 @@ import Genres from "./Genres";
 import GenreMovies from "./GenreMovies";
 import MovieDetailCard from "./MovieDetailCard";
 import User from "./User";
+import AuthProvider, { useAuth } from "./security/AuthContext";
+import LoginComponent from "./LoginComponent";
+
+function AuthenticatedRoute({ children }) {
+  const authContext = useAuth();
+  if (authContext.isAuthenticated) {
+    return children;
+  }
+  return <Navigate to="/" />;
+}
 
 function MovieApp() {
   return (
     <div className="MovieApp">
-      <BrowserRouter>
-        <HeaderComponent />
-        <Routes>
-          <Route path="/" exact element={<HomeComponent />} />
-          <Route path="/movies/popular" element={<PopularMovies />} />
-          <Route path="/movies/search" element={<SearchMovie />} />
-          <Route path="/movies/genres" element={<Genres />} />
-          <Route path="/movies/:id" element={<MovieDetailCard />} />
-          <Route
-            path="/movies/genres/:genreName"
-            element={<GenreMovies />}
-          />
-          <Route path="/profile/:userName" element={<User />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <HeaderComponent />
+          <Routes>
+            <Route path="/" element={<LoginComponent />}></Route>
+            <Route path="/login" element={<LoginComponent />}></Route>
+            <Route
+              path="/home"
+              exact
+              element={
+                <AuthenticatedRoute>
+                  <HomeComponent />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/movies/popular"
+              element={
+                <AuthenticatedRoute>
+                  <PopularMovies />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/movies/search"
+              element={
+                <AuthenticatedRoute>
+                  <SearchMovie />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/movies/genres"
+              element={
+                <AuthenticatedRoute>
+                  <Genres />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/movies/:id"
+              element={
+                <AuthenticatedRoute>
+                  <MovieDetailCard />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/movies/genres/:genreName"
+              element={
+                <AuthenticatedRoute>
+                  <GenreMovies />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/profile/:userName"
+              element={
+                <AuthenticatedRoute>
+                  <User />
+                </AuthenticatedRoute>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
