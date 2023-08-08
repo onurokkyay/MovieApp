@@ -3,13 +3,15 @@ import { Card, Button, Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { getMovieById } from "../api/MovieService";
 import userService from "../api/UserService";
+import { useAuth } from "./security/AuthContext";
 
 const MovieDetailCard = () => {
   const { id } = useParams();
   const [movie, setMovies] = useState();
-  const userName = "onurokkyay";
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showConflictAlert, setShowConflictAlert] = useState(false);
+  const authContext = useAuth();
+  const userName = authContext.userName;
 
   useEffect(() => {
     console.error(" useEffect:" + id);
