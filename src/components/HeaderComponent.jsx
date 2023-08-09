@@ -6,7 +6,7 @@ function HeaderComponent() {
   const authContext = useAuth();
   const userName = authContext.userName;
   const isAuthenticated = authContext.isAuthenticated;
-  
+
   function logout() {
     authContext.logout();
   }
@@ -58,16 +58,30 @@ function HeaderComponent() {
             </div>
             <ul className="navbar-nav">
               <li className="nav-item fs-5">
-                {
+                {isAuthenticated && (
                   <Link className="nav-link" to={`/profile/${userName}`}>
                     Profile
                   </Link>
-                }
+                )}
               </li>
               <li className="nav-item fs-5">
                 {isAuthenticated && (
                   <Link className="nav-link" to="/" onClick={logout}>
                     Logout
+                  </Link>
+                )}
+              </li>
+              <li className="nav-item fs-5">
+                {!isAuthenticated && (
+                  <Link className="nav-link" to="/login" onClick={logout}>
+                    Login
+                  </Link>
+                )}
+              </li>
+              <li className="nav-item fs-5">
+                {!isAuthenticated && (
+                  <Link className="nav-link" to="/signup" onClick={logout}>
+                    Sign Up
                   </Link>
                 )}
               </li>
