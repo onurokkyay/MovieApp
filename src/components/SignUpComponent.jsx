@@ -42,6 +42,13 @@ const SignUp = () => {
       <h2>Sign Up</h2>
       {alertMessage && (
         <Alert
+        style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: 9999,
+        }}
           variant={alertMessage.type}
           onClose={() => setAlertMessage(null)}
           dismissible
