@@ -10,6 +10,7 @@ import MovieDetailCard from "./MovieDetailCard";
 import User from "./User";
 import AuthProvider, { useAuth } from "./security/AuthContext";
 import LoginComponent from "./LoginComponent";
+import SignUpComponent from "./SignUpComponent";
 
 function AuthenticatedRoute({ children }) {
   const authContext = useAuth();
@@ -83,6 +84,12 @@ function MovieApp() {
                 <AuthenticatedRoute>
                   <User />
                 </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                  <SignUpComponent />
               }
             />
           </Routes>

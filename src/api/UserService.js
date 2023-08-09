@@ -16,9 +16,13 @@ const UserService = {
 
   createUser: async (userData) => {
     try {
-      const response = await apiClient.post(`${BASE_URL}`, userData);
+      const response = await apiClient.post(`${BASE_URL}`, {
+        userName: userData.userName,
+        mail: userData.email,
+      });
       return response.data;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   },
@@ -53,9 +57,7 @@ const UserService = {
 
   removeWatchedMovie: async (userName, id) => {
     try {
-      await apiClient.delete(
-        `${BASE_URL}/${userName}/movies/watched/${id}`
-      );
+      await apiClient.delete(`${BASE_URL}/${userName}/movies/watched/${id}`);
     } catch (error) {
       throw error;
     }
