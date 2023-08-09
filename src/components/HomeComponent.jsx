@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
+import { useAuth } from './security/AuthContext';
 
 function HomeComponent() {
-  const userName = "onurokkyay"
+  const authContext = useAuth();
+  const userName = authContext.userName;
   return (
     <div>
       <Card style={{ width: '18rem', margin: '20px' }}>

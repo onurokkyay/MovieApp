@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import userService from "../api/UserService";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { useAuth } from "./security/AuthContext";
 
 const User = () => {
   const [userData, setUserData] = useState(null);
-  const { userName } = useParams();
   const [refresh, setRefresh] = useState(false)
+  const authContext = useAuth();
+  const userName = authContext.userName;
 
   useEffect(() => {
     console.log("refresh:"+refresh)
