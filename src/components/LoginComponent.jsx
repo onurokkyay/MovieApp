@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "./security/AuthContext";
+import { Alert } from "react-bootstrap";
 function LoginComponent() {
   const [userName, setUserName] = useState("onurokkyay");
 
   const [password, setPassword] = useState("");
 
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [alertMessage, setAlertMessage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -21,20 +22,37 @@ function LoginComponent() {
   }
 
   async function handleSubmit() {
-    if (await authContext.login(userName, password)) {
-      navigate(`/home`);
-    } else {
-      setShowErrorMessage(true);
+    try {
+      const response = await authContext.login(userName, password);
+      setAlertMessage({ type: "success", text: "Login Successful" });
+      navigate('/home')
+    } catch (error) {
+      setAlertMessage({
+        type: "danger",
+        text:
+          "An error occurred while login: " + error.response.data,
+      });
     }
   }
 
   return (
     <div className="Login">
       <h1>Time to login!</h1>
-      {showErrorMessage && (
-        <div className="errorMessage">
-          Authentication Failed. Please check your credentials.
-        </div>
+      {alertMessage && (
+        <Alert
+        style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: 9999,
+        }}
+          variant={alertMessage.type}
+          onClose={() => setAlertMessage(null)}
+          dismissible
+        >
+          {alertMessage.text}
+        </Alert>
       )}
       <div className="LoginForm">
         <div>

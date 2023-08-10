@@ -1,4 +1,5 @@
 import { createContext, useState, useContext } from "react";
+import userService from "../../api/UserService";
 
 export const AuthContext = createContext();
 
@@ -12,10 +13,18 @@ export default function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
 
   async function login(userName, password) {
-    setAuthenticated(true);
-    setUserName(userName);
-    return true;
-          /*
+
+    try {
+      const response = await userService.getUserByUserName(userName);
+      setUserName(userName);
+      setAuthenticated(true);
+      return true;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+
+    /*
     try {
       const response = await executeJwtAuthenticationService(
         userName,
