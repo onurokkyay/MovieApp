@@ -25,12 +25,17 @@ function LoginComponent() {
     try {
       const response = await authContext.login(userName, password);
       setAlertMessage({ type: "success", text: "Login Successful" });
-      navigate('/home')
+      navigate("/home");
     } catch (error) {
+      var errorMessage = "";
+      if (error.response) {
+        errorMessage = error.response.data;
+      } else {
+        errorMessage = error.message;
+      }
       setAlertMessage({
         type: "danger",
-        text:
-          "An error occurred while login: " + error.response.data,
+        text: "An error occurred while login: " + errorMessage,
       });
     }
   }
