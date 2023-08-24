@@ -72,3 +72,17 @@ export async function discoverMovies(withGenres,page) {
     throw error;
   }
 }
+
+export async function getTrendingPeople(timeWindow) {
+  try {
+    const response = await apiClient.get(`/movieservice/person/trending`, {
+      params: {
+        timeWindow,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting trending people:", error.message);
+    throw error;
+  }
+}
