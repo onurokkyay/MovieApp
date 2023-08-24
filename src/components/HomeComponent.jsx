@@ -1,14 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, Button } from 'react-bootstrap';
-import { useAuth } from './security/AuthContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
+import { useAuth } from "./security/AuthContext";
 
 function HomeComponent() {
   const authContext = useAuth();
   const userName = authContext.userName;
   return (
     <div>
-      <Card style={{ width: '18rem', margin: '20px' }}>
+      <Card style={{ width: "18rem", margin: "20px" }}>
         <Card.Body>
           <Card.Title>Popular Movies</Card.Title>
           <Card.Text>Discover popular movies.</Card.Text>
@@ -18,7 +18,7 @@ function HomeComponent() {
         </Card.Body>
       </Card>
 
-      <Card style={{ width: '18rem', margin: '20px' }}>
+      <Card style={{ width: "18rem", margin: "20px" }}>
         <Card.Body>
           <Card.Title>Search Movies</Card.Title>
           <Card.Text>Search for your favorite movies.</Card.Text>
@@ -28,7 +28,7 @@ function HomeComponent() {
         </Card.Body>
       </Card>
 
-      <Card style={{ width: '18rem', margin: '20px' }}>
+      <Card style={{ width: "18rem", margin: "20px" }}>
         <Card.Body>
           <Card.Title>Genres</Card.Title>
           <Card.Text>Discover movies by genres.</Card.Text>
@@ -38,12 +38,22 @@ function HomeComponent() {
         </Card.Body>
       </Card>
 
-      <Card style={{ width: '18rem', margin: '20px' }}>
+      <Card style={{ width: "18rem", margin: "20px" }}>
         <Card.Body>
           <Card.Title>Profile</Card.Title>
           <Card.Text>Your profile and your watched,fav movies</Card.Text>
           <Button as={Link} to={`/profile/${userName}`} variant="primary">
             Go to Profile
+          </Button>
+        </Card.Body>
+      </Card>
+
+      <Card style={{ width: "18rem", margin: "20px" }}>
+        <Card.Body>
+          <Card.Title>Trending Peple</Card.Title>
+          <Card.Text>Discover trending people.</Card.Text>
+          <Button as={Link} to={`/people/trending`} variant="primary">
+            Go to Trending People
           </Button>
         </Card.Body>
       </Card>
