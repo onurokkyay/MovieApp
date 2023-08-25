@@ -12,7 +12,7 @@ const MovieList = () => {
       const response = await searchMovies(searchQuery);
 
       // Extract the list of movies from the response data
-      const moviesData = response.results;
+      const moviesData = response.movies;
       setMovies(moviesData);
     } catch (error) {
       console.error("Error searching movies:", error.message);
