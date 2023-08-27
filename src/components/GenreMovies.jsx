@@ -38,7 +38,7 @@ const GenreMovies = () => {
     try {
       setLoading(true);
       const response = await discoverMovies(id, currentPage);
-      setMovies((prevMovies) => [...prevMovies, ...response.results]);
+      setMovies((prevMovies) => [...prevMovies, ...response.movies]);
       setLoading(false);
     } catch (error) {
       setLoading(false);

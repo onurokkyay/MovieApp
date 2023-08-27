@@ -34,7 +34,7 @@ const MovieList = () => {
     try {
       setLoading(true);
       const response = await getPopularMovies(currentPage);
-      setPopularMovies((prevMovies) => [...prevMovies, ...response.results]);
+      setPopularMovies((prevMovies) => [...prevMovies, ...response.movies]);
       setLoading(false);
     } catch (error) {
       setLoading(false);

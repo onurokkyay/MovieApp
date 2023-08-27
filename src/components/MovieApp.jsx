@@ -11,6 +11,7 @@ import User from "./User";
 import AuthProvider, { useAuth } from "./security/AuthContext";
 import LoginComponent from "./LoginComponent";
 import SignUpComponent from "./SignUpComponent";
+import TrendingPeopleComponent from "./TrendingPeopleComponent";
 
 function AuthenticatedRoute({ children }) {
   const authContext = useAuth();
@@ -79,6 +80,14 @@ function MovieApp() {
               }
             />
             <Route
+              path="/people/trending"
+              element={
+                <AuthenticatedRoute>
+                  <TrendingPeopleComponent />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
               path="/profile/:userName"
               element={
                 <AuthenticatedRoute>
@@ -86,12 +95,7 @@ function MovieApp() {
                 </AuthenticatedRoute>
               }
             />
-            <Route
-              path="/signup"
-              element={
-                  <SignUpComponent />
-              }
-            />
+            <Route path="/signup" element={<SignUpComponent />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
