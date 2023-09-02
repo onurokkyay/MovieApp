@@ -45,12 +45,17 @@ function HeaderComponent() {
                     </Link>
                   }
                 </li>
-              </ul>
-              <ul className="navbar-nav">
                 <li className="nav-item fs-5">
                   {
                     <Link className="nav-link" to="/movies/search">
                       Search Movie
+                    </Link>
+                  }
+                </li>
+                <li className="nav-item fs-5">
+                  {
+                    <Link className="nav-link" to="/people/trending">
+                      Trending People
                     </Link>
                   }
                 </li>
