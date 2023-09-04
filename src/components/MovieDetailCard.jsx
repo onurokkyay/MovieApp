@@ -15,18 +15,17 @@ const MovieDetailCard = () => {
 
   useEffect(() => {
     console.error(" useEffect:" + id);
-    retrievePopularMovies();
+    retrieveMovieById();
   }, []);
 
-  const retrievePopularMovies = async () => {
+  const retrieveMovieById = async () => {
     try {
-      console.error(" retrievePopularMovies:");
       const response = await getMovieById(id);
       console.error(" Response:");
       console.log(response);
       setMovies(response);
     } catch (error) {
-      console.error("Error retrievePopularMovies:", error.message);
+      console.error("Error getMovieById:", error.message);
     }
   };
 
@@ -36,7 +35,7 @@ const MovieDetailCard = () => {
       console.log(response);
       setShowSuccessAlert(true);
     } catch (error) {
-      console.error("Error searching movies:", error.message);
+      console.error("Error addFavMovie:", error.message);
       if (error.response && error.response.status === 409) {
         setShowConflictAlert(true);
       }
@@ -49,7 +48,7 @@ const MovieDetailCard = () => {
       console.log(response);
       setShowSuccessAlert(true);
     } catch (error) {
-      console.error("Error searching movies:", error.message);
+      console.error("Error addWatchedMovie:", error.message);
       if (error.response && error.response.status === 409) {
         setShowConflictAlert(true);
       }

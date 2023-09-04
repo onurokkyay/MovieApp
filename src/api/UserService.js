@@ -1,6 +1,6 @@
 import { apiClient } from "./ApiClient";
 
-const BASE_URL = "/movieservice/users";
+const BASE_URL = "/users";
 
 const UserService = {
   getUserByUserName: async (userName) => {
