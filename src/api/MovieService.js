@@ -91,11 +91,7 @@ export async function getTrendingPeople(timeWindow) {
 
 export async function retrievePersonDetailById(personId) {
   try {
-    const response = await apiClient.get(`${BASE_URL}/person/trending`, {
-      params: {
-        timeWindow,
-      },
-    });
+    const response = await apiClient.get(`${BASE_URL}/person/${personId}`);
     return response.data;
   } catch (error) {
     console.error("Error getting trending people:", error.message);
